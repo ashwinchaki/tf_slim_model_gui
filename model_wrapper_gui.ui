@@ -1,0 +1,375 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object class="ttk.Frame" id="main_window">
+    <property name="height">200</property>
+    <property name="width">200</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+    </layout>
+    <child>
+      <object class="ttk.Combobox" id="dataset_list">
+        <property name="exportselection">true</property>
+        <property name="textvariable">string:dataset_name</property>
+        <property name="values">MNIST Flowers cifar10 Custom</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="padx">20</property>
+          <property name="pady">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Combobox" id="model_list">
+        <property name="textvariable">string:model_name</property>
+        <property name="values">lenet inception_v1 inception_v2 inception_v3 inception_v4 inception_resnet_v2 resnet_v1_50 resnet_v1_101 resnet_v1_152 resnet_v2_50 resnet_v2_101 resnet_v2_152 vgg_16 vgg_19</property>
+        <property name="width">20</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">3</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="run_button">
+        <property name="command">on_run_button_click</property>
+        <property name="text" translatable="yes">Run Training</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Spinbox" id="num_steps_spinbox">
+        <property name="exportselection">false</property>
+        <property name="font">{sans} 12 {}</property>
+        <property name="from_">0</property>
+        <property name="increment">100</property>
+        <property name="to">1000000</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="ipadx">10</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">5</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="num_steps_label">
+        <property name="text" translatable="yes">Number of Training Steps</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">5</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="model_name_label">
+        <property name="text" translatable="yes">Model Name:</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">3</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Spinbox" id="batch_size_spinbox">
+        <property name="from_">32</property>
+        <property name="increment">32</property>
+        <property name="to">4096</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="ipadx">0</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">6</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="batch_size_label">
+        <property name="text" translatable="yes">Batch Size</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">6</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="window_name">
+        <property name="font">{sans} 20 {}</property>
+        <property name="text" translatable="yes">TensorFlow Training Tool</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">30</property>
+          <property name="pady">30</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="browse_button">
+        <property name="command">open_browse_dir</property>
+        <property name="text" translatable="yes">Browse</property>
+        <layout>
+          <property name="column">3</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="dataset_directory_label">
+        <property name="font">{sans} 10 {}</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="padx">20</property>
+          <property name="pady">20</property>
+          <property name="propagate">False</property>
+          <property name="row">2</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="eval_button">
+        <property name="text" translatable="yes">Evaluate Performance</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="browse_ckpt">
+        <property name="command">on_ckpt_browse</property>
+        <property name="text" translatable="yes">Browse</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">4</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="tensorboard_button">
+        <property name="text" translatable="yes">Visualize with TensorBoard</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="out_ckpt_label">
+        <property name="text" translatable="yes">Output Checkpoint Directory</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">8</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="browse_output">
+        <property name="command">on_ckpt_out_browse</property>
+        <property name="text" translatable="yes">Browse</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">8</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="initial_ckpt_dir_label">
+        <property name="font">{sans} 10 {}</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">4</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="final_ckpt_dir_label">
+        <property name="font">{sans} 10 {}</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">8</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Radiobutton" id="pre_defined_dataset">
+        <property name="text" translatable="yes">Pre-Defined Dataset</property>
+        <property name="value">1</property>
+        <property name="variable">int:pre-def</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Radiobutton" id="custom_model">
+        <property name="text" translatable="yes">Custom Dataset</property>
+        <property name="value">0</property>
+        <property name="variable">int:pre-def</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="pady">0</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="use_ckpt">
+        <property name="text" translatable="yes">Use existing checkpoint</property>
+        <property name="variable">int:var</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipady">0</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">4</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="datasets_splits">
+        <property name="text" translatable="yes">Dataset:</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Combobox" id="optimizer_list">
+        <property name="values">GradientDescent Adam Adagrad AdagradDA Adadelta Momentum Ftrl ProximalGradientDescent ProximalAdagrad RMSProp</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">7</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="optimizer_label">
+        <property name="text" translatable="yes">Optimizer</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">7</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="eval_data_label">
+        <property name="text" translatable="yes">Evaluation Data</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="padx">20</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">9</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Combobox" id="eval_dataset">
+        <property name="values">Validation Test</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">9</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Combobox" id="learning_rate_box">
+        <property name="textvariable">boolean:lr</property>
+        <property name="values">1 0.1 0.01 0.001 0.0001 0.00001</property>
+        <layout>
+          <property name="column">3</property>
+          <property name="ipadx">0</property>
+          <property name="padx">20</property>
+          <property name="propagate">True</property>
+          <property name="row">7</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="learning_rate_label">
+        <property name="text" translatable="yes">Learning Rate</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="propagate">True</property>
+          <property name="row">7</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>

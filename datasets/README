@@ -1,0 +1,7 @@
+Generate shapes data:
+   python mk_shapes_data.py
+   --> verify existence of data in ./shapes
+
+Generate TFRecords of shapes data:
+   ./run_build_image_data.sh
+   --> verify existence of TFRecords in ./shapes
