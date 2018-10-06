@@ -1,3 +1,8 @@
+Student Symposium Poster for Model GUI Project:
+
+[Link](GUI_poster.pdf)
+
+
 >> model_wrapper_gui.py
 Allows Inception, ResNet, VGG, and LeNet models to be used with custom datasets without the need for using custom scripts tailored to each model. Helps non-experts with learning how to train and classify using existing pre-trained models
 
